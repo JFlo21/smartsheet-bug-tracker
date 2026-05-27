@@ -45,11 +45,11 @@ Optional overrides:
 ## Run
 
 ```bash
-python /tmp/workspace/JFlo21/smartsheet-bug-tracker/sync_bug_tracker.py
+python sync_bug_tracker.py
 ```
 
 ## Test
 
 ```bash
-python -m unittest discover -s /tmp/workspace/JFlo21/smartsheet-bug-tracker/tests -p "test_*.py"
+python -m unittest discover -s tests -p "test_*.py"
 ```
