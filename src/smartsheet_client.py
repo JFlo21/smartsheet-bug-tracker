@@ -26,6 +26,8 @@ log = logging.getLogger(__name__)
 
 # Smartsheet API rejects requests with more than 500 rows at a time.
 _BATCH_SIZE = 300
+# Smartsheet text/number cells reject values longer than 4000 characters.
+_MAX_CELL_LENGTH = 4000
 
 
 class SmartsheetClient:
@@ -103,8 +105,8 @@ class SmartsheetClient:
             cell.column_id = col_id
             # Smartsheet text cells reject values >4000 chars.
             text = "" if value is None else str(value)
-            if len(text) > 4000:
-                text = text[:3997] + "..."
+            if len(text) > _MAX_CELL_LENGTH:
+                text = text[:_MAX_CELL_LENGTH - 3] + "..."
             cell.value = text
             row.cells.append(cell)
         return row
